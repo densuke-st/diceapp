@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diceapp
+spec:
+  selector:
+    matchLabels:
+      app: diceapp
+  template:
+    metadata:
+      labels:
+        app: diceapp
+    spec:
+      containers:
+      - name: diceapp
+        image: densukest/diceapp:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
