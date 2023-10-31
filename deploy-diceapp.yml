@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: diceapp
-        image: densukest/diceapp:v1
+        image: densukest/diceapp:v2
         resources:
           limits:
             memory: "128Mi"

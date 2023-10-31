@@ -2,12 +2,17 @@ from bottle import run,route, response
 from json import dumps
 from random import randint
 
+@route("/v2/<d:int>")
 @route("/v1/")
 @route("/")
-def roll():
-    num = randint(1,6)
+def roll(d = 1):
+    rolls = []
+    for i in range(d):
+        rolls.append(randint(1,6))
     data = {
-        'roll': num
+        'roll': sum(rolls),
+        'dices': len(rolls),
+        'values': rolls
     }
     response.set_header('Content-Type', 'application/json')
     return dumps(data)
