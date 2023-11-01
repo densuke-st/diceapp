@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wordpress
+  labels:
+    name: wordpress
+spec:
+  containers:
+  - name: db
+    image: mariadb:lts-jammy
+    env:
+      - name: MARIADB_RANDOM_ROOT_PASSWORD
+        value: "1"
+      - name: MARIADB_DATABASE
+        value: "wordpress"
+      - name: MARIADB_USER
+        value: "wpadmin"
+      - name: MARIADB_PASSWORD
+        value: "hogehoge"
+    resources:
+      limits:
+        memory: "256Mi"
+        cpu: "500m"
+    readinessProbe:
+      exec:
+        command:
+          - mariadb-admin
+          - ping
+          - -h
+          - localhost
+          - -u
+          - wpadmin
+          - --password=hogehoge

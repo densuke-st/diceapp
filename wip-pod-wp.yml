@@ -1,0 +1,17 @@
+  - name: wordpress
+    image: wordpress:6-apache
+    env:
+      - name: WORDPRESS_DB_HOST
+        value: "127.0.0.1"
+      - name: WORDPRESS_DB_NAME
+        value: "wordpress"
+      - name: WORDPRESS_DB_USER
+        value: "wpadmin"
+      - name: WORDPRESS_DB_PASSWORD
+        value: "hogehoge"
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "200m"
+    ports:
+      - containerPort: 80
